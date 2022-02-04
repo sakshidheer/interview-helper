@@ -7,20 +7,6 @@ function App() {
   return (
     <div className={classes.App}>
       <Login/>
-      <form>
-      <TextField
-        className={classes.margin}
-        id="input-with-icon-textfield"
-        label="TextField"
-        InputProps={{
-          startAdornment: (
-            <InputAdornment position="start">
-              <AccountCircle />
-            </InputAdornment>
-          ),
-        }}
-      />
-      </form>
     </div>
   );
 }

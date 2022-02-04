@@ -1,0 +1,10 @@
+.login{
+   width: 300px;
+}
+
+.login form{
+    display: flex;
+    flex-direction: column;
+
+}
+
