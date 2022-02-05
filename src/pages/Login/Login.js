@@ -9,7 +9,7 @@ const Login = () => {
     let [email, setEmail] = useState('');
     return (
         <div className={classes.login}>
-            Interview-helper
+            <div>Interview-helper</div>
             <form>
                 <FormControl variant="outlined">
                     <InputLabel htmlFor="standard-adornment-email">Email</InputLabel>
