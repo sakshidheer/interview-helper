@@ -1,15 +1,18 @@
-import { Button, FormControl, IconButton, Input, InputAdornment, InputLabel, OutlinedInput } from "@material-ui/core";
+import { Button, FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput } from "@material-ui/core";
 import { Visibility, VisibilityOff } from "@material-ui/icons";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Logo from "../../Components/Logo";
 import classes from './Login.module.css';
 
 const Login = () => {
     let [showPassword, setShowPassword] = useState(false);
     let [password, setPassword] = useState('');
     let [email, setEmail] = useState('');
+    let navigate = useNavigate();
     return (
         <div className={classes.login}>
-            <div>Interview-helper</div>
+            <Logo />
             <form>
                 <FormControl variant="outlined">
                     <InputLabel htmlFor="standard-adornment-email">Email</InputLabel>
@@ -43,10 +46,19 @@ const Login = () => {
 
                     />
                 </FormControl>
-                <Button variant="contained" color="primary">
+                <Button size="large"
+                    variant="contained"
+                    color="primary">
                     Log In
                 </Button>
             </form>
+            <hr/>
+            <Button size="medium"
+                    variant="contained"
+                    color="secondary"
+                    onClick={() => navigate("/signup")}>
+                    Sign Up
+                </Button>
         </div>
     )
 }
