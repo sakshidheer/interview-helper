@@ -1,5 +1,5 @@
 import { Button, FormControl, InputAdornment, InputLabel, OutlinedInput } from "@material-ui/core";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import Logo from "../../Components/Logo";
 import classes from './SignUp.module.css';
@@ -8,6 +8,17 @@ const SignUp = () => {
     let [password, setPassword] = useState('');
     let [email, setEmail] = useState('');    
     let [confirmPassword, setConfirmPassword] = useState('');
+    useEffect(()=>{
+       if(email !== ''){
+           fetch("http://127.0.0.1:5000/checkIfUserNameValid?username="+email,{
+            mode: 'no-cors'
+           })
+           .then(res =>
+            res).then(d => {
+                console.log(d.body)
+            })
+       }
+    },[email])
     return (
         <div className={classes.signup}>
             <Logo />
