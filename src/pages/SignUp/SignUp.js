@@ -10,12 +10,18 @@ const SignUp = () => {
     let [confirmPassword, setConfirmPassword] = useState('');
     useEffect(()=>{
        if(email !== ''){
-           fetch("http://127.0.0.1:5000/checkIfUserNameValid?username="+email,{
-            mode: 'no-cors'
+           fetch("http://localhost:8000/checkIfUserNameValid/"+email,{
+            mode: 'no-cors',
+            
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                // 'Content-Type': 'application/x-www-form-urlencoded',
+              }
            })
            .then(res =>
             res).then(d => {
-                console.log(d.body)
+                console.log(d)
             })
        }
     },[email])
