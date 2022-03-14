@@ -35,4 +35,4 @@ def read_root():
 
 @app.get("/checkIfUserNameValid/{username}")
 def read_item(username: str):
-    return {"valid": True}
+    return {"valid": username}
