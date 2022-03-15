@@ -1,0 +1,11 @@
+.header {
+    background-color: rgb(255, 255, 255);
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.header div {
+  margin-top: 10px;
+}
