@@ -6,25 +6,22 @@ import classes from './SignUp.module.css';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 const SignUp = () => {
     let [password, setPassword] = useState('');
-    let [email, setEmail] = useState('');    
+    let [email, setEmail] = useState('');
     let [confirmPassword, setConfirmPassword] = useState('');
-    useEffect(()=>{
-       if(email !== ''){
-           fetch("http://localhost:8000/checkIfUserNameValid/"+email,{
-            mode: 'no-cors',
-            
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                // 'Content-Type': 'application/x-www-form-urlencoded',
-              }
-           })
-           .then(res =>
-            res).then(d => {
-                console.log(d)
+    useEffect(() => {
+        if (email !== '') {
+            fetch("http://localhost:8000/checkIfUserNameValid/" + email, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    // 'Content-Type': 'application/x-www-form-urlencoded',
+                }
             })
-       }
-    },[email])
+                .then(res => res.json()).then(d => {
+                    console.log(d.valid)
+                })
+        }
+    }, [email])
     return (
         <div className={classes.signup}>
             <Logo />
@@ -38,7 +35,7 @@ const SignUp = () => {
                         onChange={(e) => setEmail(e.target.value)}
                         labelWidth={70}
                         endAdornment={<InputAdornment position="end">
-                           <CheckCircleIcon fontSize="small" style={{color:'green'}}/> </InputAdornment>}
+                            <CheckCircleIcon fontSize="small" style={{ color: 'green' }} /> </InputAdornment>}
                     />
                 </FormControl>
                 <FormControl variant="outlined">

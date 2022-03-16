@@ -21,3 +21,12 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+api/.idea/api.iml
+api/.idea/inspectionProfiles/profiles_settings.xml
+api/.idea/misc.xml
+api/.idea/modules.xml
+api/.idea/vcs.xml
+api/.idea/workspace.xml
+api/__pycache__/main.cpython-39.pyc
+api/__pycache__/main.cpython-39.pyc
+api/__pycache__/main.cpython-39.pyc

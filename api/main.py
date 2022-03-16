@@ -24,8 +24,21 @@ app.run()
 from typing import Optional
 
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+
+origins = [
+    "http://localhost:3000",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 @app.get("/")
@@ -35,4 +48,7 @@ def read_root():
 
 @app.get("/checkIfUserNameValid/{username}")
 def read_item(username: str):
-    return {"valid": username}
+    isValid = False
+    if username == 'sdheer':
+        isValid = True
+    return {"valid": isValid}
