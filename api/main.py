@@ -25,6 +25,16 @@ from typing import Optional
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+import mysql.connector
+
+mydb = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password="p@ssw0rd",
+    database="interviewhelper"
+)
+
+mycursor = mydb.cursor(dictionary=True)
 
 app = FastAPI()
 
@@ -52,3 +62,10 @@ def read_item(username: str):
     if username == 'sdheer':
         isValid = True
     return {"valid": isValid}
+
+
+@app.get("/getLanguages")
+def getLanguages():
+    mycursor.execute("SELECT * FROM languages")
+
+    return mycursor.fetchall()
