@@ -34,7 +34,7 @@ mydb = mysql.connector.connect(
     database="interviewhelper"
 )
 
-mycursor = mydb.cursor(dictionary=True)
+
 
 app = FastAPI()
 
@@ -66,6 +66,13 @@ def read_item(username: str):
 
 @app.get("/getLanguages")
 def getLanguages():
+    mycursor = mydb.cursor(dictionary=True)
     mycursor.execute("SELECT * FROM languages")
 
+    return mycursor.fetchall()
+
+@app.get("/getAllQuestionsAndAnswers")
+def getAllQuestionsAndAnswers():
+    mycursor = mydb.cursor(dictionary=True)
+    mycursor.execute("SELECT * FROM quesans")
     return mycursor.fetchall()
