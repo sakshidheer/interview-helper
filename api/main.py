@@ -74,5 +74,5 @@ def getLanguages():
 @app.get("/getAllQuestionsAndAnswers")
 def getAllQuestionsAndAnswers():
     mycursor = mydb.cursor(dictionary=True)
-    mycursor.execute("SELECT * FROM quesans")
+    mycursor.execute("SELECT * FROM quesans INNER JOIN languages ON quesans.langcode = languages.code")
     return mycursor.fetchall()
