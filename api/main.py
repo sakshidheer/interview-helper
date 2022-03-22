@@ -65,11 +65,12 @@ def read_item(username: str):
 
 
 @app.get("/getLanguages")
-def getLanguages():
+def getlanguages():
     mycursor = mydb.cursor(dictionary=True)
     mycursor.execute("SELECT * FROM languages")
 
     return mycursor.fetchall()
+
 
 @app.get("/getAllQuestionsAndAnswers")
 def getAllQuestionsAndAnswers():

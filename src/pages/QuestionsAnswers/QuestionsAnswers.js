@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Languages from '../../Components/Languages';
 import QuestionAsAccordion from '../../Components/QuestionAsAccordion/QuestionAsAccordion';
+import QuestionsAnswersHeader from '../../Components/QuestionsAnswersHeader/QuestionsAnswersHeader';
 import classes from './QuestionsAnswers.module.css';
 
 const QuestionsAnswers = () => {
@@ -15,6 +16,7 @@ const QuestionsAnswers = () => {
     },[]);
     return (
         <div className={classes.home}>
+            <QuestionsAnswersHeader/>
             <QuestionAsAccordion data={quesAns}/>
         </div>)
 }
