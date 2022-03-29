@@ -77,3 +77,11 @@ def getAllQuestionsAndAnswers():
     mycursor = mydb.cursor(dictionary=True)
     mycursor.execute("SELECT * FROM quesans INNER JOIN languages ON quesans.langcode = languages.code")
     return mycursor.fetchall()
+
+
+@app.get("/getexperinces")
+def getexperinces():
+    mycursor = mydb.cursor(dictionary=True)
+    mycursor.execute("SELECT * FROM experience")
+
+    return mycursor.fetchall()
