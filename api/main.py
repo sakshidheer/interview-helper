@@ -27,15 +27,6 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import mysql.connector
 
-mydb = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    password="p@ssw0rd",
-    database="interviewhelper"
-)
-
-
-
 app = FastAPI()
 
 origins = [
@@ -66,22 +57,30 @@ def read_item(username: str):
 
 @app.get("/getLanguages")
 def getlanguages():
-    mycursor = mydb.cursor(dictionary=True)
-    mycursor.execute("SELECT * FROM languages")
-
-    return mycursor.fetchall()
+    return executeQueryAndFetchResult("SELECT * FROM languages")
 
 
 @app.get("/getAllQuestionsAndAnswers")
 def getAllQuestionsAndAnswers():
-    mycursor = mydb.cursor(dictionary=True)
-    mycursor.execute("SELECT * FROM quesans INNER JOIN languages ON quesans.langcode = languages.code")
-    return mycursor.fetchall()
+    return executeQueryAndFetchResult("SELECT * FROM quesans INNER JOIN languages ON quesans.langcode = languages.code")
+
 
 
 @app.get("/getexperinces")
 def getexperinces():
-    mycursor = mydb.cursor(dictionary=True)
-    mycursor.execute("SELECT * FROM experience")
+    return executeQueryAndFetchResult("SELECT * FROM experience")
 
-    return mycursor.fetchall()
+
+def executeQueryAndFetchResult(query):
+    mydb = mysql.connector.connect(
+        host="localhost",
+        user="root",
+        password="p@ssw0rd",
+        database="interviewhelper"
+    )
+    mycursor = mydb.cursor(dictionary=True)
+    mycursor.execute(query)
+    result = mycursor.fetchall()
+    mycursor.close()
+    mydb.close()
+    return result
