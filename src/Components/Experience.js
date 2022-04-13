@@ -1,5 +1,5 @@
-import { FormControl, InputLabel, MenuItem, Select } from "@material-ui/core";
-import { useEffect } from "react";
+import { FormControl, InputLabel, MenuItem, OutlinedInput, Select } from "@material-ui/core";
+import { useEffect, useRef } from "react";
 import { useState } from "react";
 
 const Experience = (props) => {
@@ -12,18 +12,34 @@ const Experience = (props) => {
         }
         fetchExperience();
     },[]);
+    const inputLabel = useRef(null);
+    const [labelWidth, setLabelWidth] = useState(0);
+    useEffect(() => {
+        setLabelWidth(inputLabel.current.offsetWidth);
+    }, []);
     const items = experience.map(item =>{
         return <MenuItem value={item.id}>{item.display}</MenuItem>
     });
     return (
-        <FormControl style={{minWidth: 120}} variant="standard">
-            <InputLabel id="demo-simple-select-label">Experience</InputLabel>
+        <FormControl style={{minWidth: 120}} variant="outlined">
+            <InputLabel id="experience-label"
+            ref={inputLabel}
+            shrink
+            htmlFor="experience-select">Experience</InputLabel>
             <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
+                labelId="experience-label"
+                id="experience-select"
                 value={props.experince}
-                label="Age"
+                label="Experience"
                 autoWidth
+                input={
+                    <OutlinedInput
+                        notched
+                        labelWidth={labelWidth}
+                        name="lang"
+                        id="outlined-lang"
+                    />
+                }
             >{items}
             </Select>
         </FormControl>

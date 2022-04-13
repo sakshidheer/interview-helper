@@ -1,4 +1,5 @@
-import { FormControl, InputLabel, MenuItem, Select } from "@material-ui/core";
+import { FormControl, InputLabel, MenuItem, OutlinedInput, Select } from "@material-ui/core";
+import { useRef } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 
@@ -11,22 +12,39 @@ const Languages = (props) => {
             setLangs(data)
         }
         fetchLangs();
-    },[]);
-    const items = langs.map(item =>{
-        return <MenuItem value={item.code}>{item.name}</MenuItem>
+    }, []);
+    const inputLabel = useRef(null);
+    const [labelWidth, setLabelWidth] = useState(0);
+    useEffect(() => {
+        setLabelWidth(inputLabel.current.offsetWidth);
+    }, []);
+    const items = langs.map(item => {
+        return <MenuItem value={item.code} key={item.code}>{item.name}</MenuItem>
     })
     return (
-        <FormControl style={{minWidth: 120}} variant="standard">
-            <InputLabel id="demo-simple-select-label">Language</InputLabel>
+        <FormControl style={{ minWidth: 150 }} 
+        variant="outlined">
+            <InputLabel id="lang-label"
+                ref={inputLabel}
+                shrink
+                htmlFor="outlined-lang">Language</InputLabel>
             <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
+                labelId="lang-label"
+                id="lang"
                 value={props.lang}
-                label="Age"
+                label="Language"
                 autoWidth
+                input={
+                    <OutlinedInput
+                        notched
+                        labelWidth={labelWidth}
+                        name="lang"
+                        id="outlined-lang"
+                    />
+                }
             >{items}
             </Select>
-        </FormControl>
+        </FormControl >
     )
 }
 
